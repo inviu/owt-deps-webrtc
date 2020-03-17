@@ -45,7 +45,8 @@ class VideoAdapter {
                             int* cropped_width,
                             int* cropped_height,
                             int* out_width,
-                            int* out_height);
+                            int* out_height,
+							int min_framerate = 0);//plus added min_framerate
 
   // DEPRECATED. Please use OnOutputFormatRequest below.
   // TODO(asapersson): Remove this once it is no longer used.
@@ -105,6 +106,9 @@ class VideoAdapter {
   int adaption_changes_;  // Number of changes in scale factor.
   int previous_width_;    // Previous adapter output width.
   int previous_height_;   // Previous adapter output height.
+  
+  int min_framerate_;     //plus added, Limit the minimum frame rate
+  
   // Resolution must be divisible by this factor.
   const int required_resolution_alignment_;
   // The target timestamp for the next frame based on requested format.

@@ -104,6 +104,7 @@ VideoAdapter::VideoAdapter(int required_resolution_alignment)
       adaption_changes_(0),
       previous_width_(0),
       previous_height_(0),
+	  min_framerate_(0),//plus added
       required_resolution_alignment_(required_resolution_alignment),
       resolution_request_target_pixel_count_(std::numeric_limits<int>::max()),
       resolution_request_max_pixel_count_(std::numeric_limits<int>::max()),
@@ -120,6 +121,9 @@ bool VideoAdapter::KeepFrame(int64_t in_timestamp_ns) {
   if (max_fps_)
     max_fps = std::min(max_fps, *max_fps_);
 
+  if (min_framerate_ > 0)//plus added
+      max_fps = std::max(max_fps, min_framerate_);
+	  
   if (max_fps <= 0)
     return false;
 
@@ -160,10 +164,12 @@ bool VideoAdapter::AdaptFrameResolution(int in_width,
                                         int* cropped_width,
                                         int* cropped_height,
                                         int* out_width,
-                                        int* out_height) {
+                                        int* out_height,
+										int min_framerate) {
   rtc::CritScope cs(&critical_section_);
   ++frames_in_;
 
+  min_framerate_ = min_framerate;//plus added
   // The max output pixel count is the minimum of the requests from
   // OnOutputFormatRequest and OnResolutionFramerateRequest.
   int max_pixel_count = resolution_request_max_pixel_count_;
