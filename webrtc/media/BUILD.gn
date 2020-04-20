@@ -213,10 +213,10 @@ rtc_static_library("rtc_media") {
 
   public_configs = []
   if (build_with_chromium) {
-    deps += [ "../modules/video_capture:video_capture" ]
+    #deps += [ "../modules/video_capture:video_capture" ]
   } else {
     public_configs += [ ":rtc_media_defines_config" ]
-    deps += [ "../modules/video_capture:video_capture_internal_impl" ]
+    #deps += [ "../modules/video_capture:video_capture_internal_impl" ]
   }
   deps += [
     ":rtc_media_base",
@@ -235,7 +235,7 @@ rtc_static_library("rtc_media") {
     "../modules/audio_device:audio_device",
     "../modules/audio_mixer:audio_mixer_impl",
     "../modules/audio_processing:audio_processing",
-    "../modules/video_capture:video_capture_module",
+    #"../modules/video_capture:video_capture_module",
     "../modules/video_coding",
     "../modules/video_coding:webrtc_h264",
     "../modules/video_coding:webrtc_vp8",

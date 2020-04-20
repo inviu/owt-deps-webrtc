@@ -102,10 +102,10 @@ fi
 all=`find ./out/obj/ -name "*.o"`
 if [[ -n $all ]];
 then
-    ar cq ${ROOT}/libwebrtc.a $all
-    echo "Generate libwebrtc.a OK"
+    ar cq ${ROOT}/libwebrtc.lib $all
+    echo "Generate libwebrtc.lib OK"
 else
-    echo "Generate libwebrtc.a Fail"
+    echo "Generate libwebrtc.lib Fail"
 fi
 
 cd -
