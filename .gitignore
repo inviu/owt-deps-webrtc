@@ -37,14 +37,9 @@
 .settings
 .sw?
 /Makefile
-/base
-/build
-/buildtools
 /ios
 /mojo
 /out
-/testing
-/third_party
 /tools
 /tools-webrtc/android/profiling/flamegraph
 /tools-webrtc/android/profiling/simpleperf
